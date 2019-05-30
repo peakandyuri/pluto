@@ -4,8 +4,8 @@
 	"description": "the react project use webpack",
 	"main": "index.js",
 	"scripts": {
-		"start": "webpack-dev-server",
-		"build": "webpack --mode production"
+		"start": "webpack-dev-server --config webpack.dev.js",
+		"build": "webpack --mode production --config webpack.prod.js"
 	},
 	"keywords": [
 		"react",

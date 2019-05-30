@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 //打包清理目录插件
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+
 module.exports = {
     entry: "./src/index.tsx",
     output: {
@@ -14,7 +15,7 @@ module.exports = {
         path: resolve(__dirname, './dist'),
         publicPath: "./"    //html引入文件会使用
     },
-    performance: { hints: false },
+    performance: { hints: false },                //关闭文件过大警告
     //mode: 'development',    //production
     resolve: {
         extensions: ['.ts', '.tsx', ".js"],
@@ -43,13 +44,7 @@ module.exports = {
             {
                 test: /\.(css|less)$/,
                 use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            publicPath: '../',
-                            hmr: process.env.NODE_ENV === 'development',    //模块热替换
-                        }
-                    },
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
                     'less-loader'
                 ],
@@ -100,7 +95,4 @@ module.exports = {
             },
         },
     },
-    devServer: {
-        contentBase: "./dist"
-    }
 }
