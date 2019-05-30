@@ -21,6 +21,8 @@
 		"@babel/preset-react": "^7.0.0",
 		"@types/react": "^16.8.18",
 		"@types/react-dom": "^16.8.4",
+		"@types/react-router": "^5.0.1",
+		"@types/react-router-dom": "^4.3.3",
 		"babel-loader": "^8.0.6",
 		"babel-plugin-import": "^1.11.2",
 		"clean-webpack-plugin": "^2.0.2",
@@ -40,6 +42,8 @@
 	"dependencies": {
 		"antd": "^3.19.1",
 		"react": "^16.8.6",
-		"react-dom": "^16.8.6"
+		"react-dom": "^16.8.6",
+		"react-router": "^5.0.0",
+		"react-router-dom": "^5.0.0"
 	}
 }

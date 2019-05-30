@@ -28,10 +28,11 @@ npm start
     <li>html的生成及使用</li>
     <li>图片文件的处理，并生成资源目录</li>
     <li>打包时先清理之前的打包文件</li>
+    <li>路由的引入</li>
 </ol>
 目前想到一些问题
 <ul>
-    <li>路由的引入，并实现动态路由</li>
+    <li>想实现动态路由</li>
     <li>redux及其中间件,封装saga和elm等</li>
     <li>将js文件打包到单独的目录中</li>
     <li>webpack输出内容优化</li>

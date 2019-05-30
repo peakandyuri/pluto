@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import './index.css';
 
-const Main = React.lazy(()=>import("./components/example"));
+declare var product;
+
+const App = React.lazy(() => import("./layout/base-layout"));
+
+const children = (
+    <React.Suspense fallback={<div>页面正在加载</div>}>
+        <App />
+    </React.Suspense>
+);
+
 
 ReactDOM.render((
-    
-    <React.Suspense fallback={<div>页面正在加载</div>}>
-        <Main />
-    </React.Suspense>
+    <>
+        {
+            product ? <HashRouter children={children}/> : <BrowserRouter children={children}/>
+        }
+    </>
 ), document.getElementById("root"));

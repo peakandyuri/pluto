@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 //打包清理目录插件
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+const webpack = require("webpack");
 
 module.exports = {
     entry: "./src/index.tsx",
@@ -74,7 +75,10 @@ module.exports = {
             filename: '[name].[hash].css',
             chunkFilename: '[id].[chunkhash].css',
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new webpack.DefinePlugin({
+            product: true
+        })
     ],
     optimization: {
         splitChunks: {
@@ -87,7 +91,7 @@ module.exports = {
                 },
                 vendor: {
                     test: /node_modules/,
-                    chunks:'initial',
+                    chunks: 'initial',
                     name: 'vendor',
                     priority: 10,
                     enforce: true

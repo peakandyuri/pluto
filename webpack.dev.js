@@ -3,18 +3,21 @@ const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 //css处理插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
+const webpack = require("webpack");
 
 module.exports = {
     devtool: "#source-map",
-    entry: "./src/index.tsx",
+    entry: [
+        "./src/index.tsx"
+    ],
     output: {
         filename: 'bundle.[hash].js',
         chunkFilename: '[name].[chunkhash].js',
         path: resolve(__dirname, './dist'),
+        publicPath: "/"
     },
     performance: { hints: false },
-    //mode: 'development',    //production
+    mode: 'development',    //production
     resolve: {
         extensions: ['.ts', '.tsx', ".js"],
         alias: {
@@ -77,6 +80,9 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].[hash].css',
             chunkFilename: '[id].[chunkhash].css',
+        }),
+        new webpack.DefinePlugin({
+            product: false
         })
     ],
     optimization: {
@@ -99,6 +105,12 @@ module.exports = {
         },
     },
     devServer: {
-        contentBase: "./dist"
+        contentBase: "./dist",
+        index: "index.html",
+        historyApiFallback: true,       //有路由时刷新页面不会报404
+        progress : true,                //处理进度
+        hot: true,                      //热更新
+        compress: true,                 //压缩
+        //port: 8080
     }
 }
