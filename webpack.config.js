@@ -57,7 +57,7 @@ module.exports = {
                 use: {
                     loader: "url-loader",
                     options: {
-                        name: "[chunkhash].[ext]",
+                        name: "[hash].[ext]",
                         outputPath: "assets/images",
                         context: './',
                         limit: 8192         //8KB
