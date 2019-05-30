@@ -9,10 +9,12 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     entry: "./src/index.tsx",
     output: {
-        filename: './bundle.js',
+        filename: 'bundle.[hash].js',
         chunkFilename: '[name].[chunkhash].js',
-        path: resolve(__dirname, './dist')
+        path: resolve(__dirname, './dist'),
+        publicPath: "./"    //html引入文件会使用
     },
+    performance: { hints: false },
     //mode: 'development',    //production
     resolve: {
         extensions: ['.ts', '.tsx', ".js"],
@@ -71,7 +73,7 @@ module.exports = {
             template: `./src/index.ejs`,
             filename: './index.html',
             title: "李成竹园",
-            hash: true,
+            //hash: true,
         }),
         new MiniCssExtractPlugin({
             filename: '[name].[hash].css',
@@ -79,18 +81,25 @@ module.exports = {
         }),
         new CleanWebpackPlugin()
     ],
-    // optimization: {
-    //     splitChunks: {
-    //         cacheGroups: {
-    //             styles: {
-    //                 name: 'styles',
-    //                 test: /\.css$/,
-    //                 chunks: 'all',
-    //                 enforce: true,
-    //             },
-    //         },
-    //     },
-    // },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                styles: {
+                    name: 'styles',
+                    test: /\.css$/,
+                    chunks: 'async',
+                    enforce: true,
+                },
+                vendor: {
+                    test: /node_modules/,
+                    chunks:'initial',
+                    name: 'vendor',
+                    priority: 10,
+                    enforce: true
+                }
+            },
+        },
+    },
     devServer: {
         contentBase: "./dist"
     }
