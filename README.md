@@ -32,9 +32,8 @@ npm start
 </ol>
 目前想到一些问题
 <ul>
-    <li>想实现动态路由</li>
-    <li>redux及其中间件,封装saga和elm等</li>
-    <li>将js文件打包到单独的目录中</li>
+    <li>想实现动态路由，不需要配置路由</li>
+    <li>redux及其中间件,封装saga和elm等</li>   
     <li>webpack输出内容优化</li>
     <li>考虑是否要使用css modules</li>
 </ul>

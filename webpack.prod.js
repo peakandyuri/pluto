@@ -13,8 +13,8 @@ module.exports = {
     output: {
         filename: 'bundle.[hash].js',
         chunkFilename: '[name].[chunkhash].js',
-        path: resolve(__dirname, './dist'),
-        publicPath: "./"    //html引入文件会使用
+        path: resolve(__dirname, './dist/build'),
+        publicPath: "./build/"    //html引入文件会使用
     },
     performance: { hints: false },                //关闭文件过大警告
     //mode: 'development',    //production
@@ -56,7 +56,7 @@ module.exports = {
                     loader: "url-loader",
                     options: {
                         name: "[hash].[ext]",
-                        outputPath: "assets/images",
+                        outputPath: "../assets/images",
                         context: './',
                         limit: 8192         //8KB
                     }
@@ -67,7 +67,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: `./src/index.ejs`,
-            filename: './index.html',
+            filename: '../index.html',
             title: "李成竹园",
             //hash: true,
         }),
